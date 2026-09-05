@@ -111,3 +111,10 @@
 .closing-action .button{margin-top:24px}
 .closing-cta .closing-call{margin-top:18px;color:var(--muted);font-size:1rem}
 .closing-call a{color:var(--text);font-weight:700;white-space:nowrap}
+
+/* Dedicated callback page uses the shared responsive form layout. */
+.callback-page .contact-section{padding-block:56px}
+.callback-page h1{font-size:clamp(3rem,5vw,4.7rem)}
+.callback-service-area{margin-top:20px}
+.callback-page .site-footer{padding-bottom:28px}
+@media(max-width:800px){.callback-page .contact-section{padding-block:32px}.callback-page .contact-layout{gap:28px}}

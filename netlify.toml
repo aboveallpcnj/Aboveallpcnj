@@ -17,13 +17,13 @@
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
 
-# Preserve the callback URL used by the previous website.
+# Serve the dedicated callback page at its established clean URL.
 [[redirects]]
   from = "/request-a-call"
-  to = "/#callback"
-  status = 301
+  to = "/request-a-call.html"
+  status = 200
 
 [[redirects]]
   from = "/request-a-call/"
-  to = "/#callback"
+  to = "/request-a-call"
   status = 301
