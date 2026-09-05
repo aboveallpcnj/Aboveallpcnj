@@ -35,6 +35,8 @@ export function initContactForm(form, status, success, options = {}) {
       form.hidden = true;
       success.hidden = false;
       success.focus();
+      // Measurement failures must never change a successfully delivered request.
+      try { options.onSuccess?.(); } catch (_) {}
     } catch (error) {
       status.dataset.state = 'error';
       if (error.name === 'AbortError') {

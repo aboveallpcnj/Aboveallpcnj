@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initContactForm } from '../assets/contact-form.js';
 
-function fixture(fetcher, timeoutMs = 200) {
+function fixture(fetcher, timeoutMs = 200, onSuccess) {
   const button = { disabled: false, textContent: 'Request a free callback' };
   const status = { textContent: '', dataset: {} };
   const success = { hidden: true, focused: false, focus() { this.focused = true; } };
@@ -12,7 +12,7 @@ function fixture(fetcher, timeoutMs = 200) {
     valid: true, reportValidity() { return this.valid; }, querySelector() { return button; },
     setAttribute(key, value) { this.attributes[key] = value; }, addEventListener() {},
   };
-  const submit = initContactForm(form, status, success, { fetcher, timeoutMs, makeData: () => new Map(Object.entries(fields)) });
+  const submit = initContactForm(form, status, success, { fetcher, timeoutMs, onSuccess, makeData: () => new Map(Object.entries(fields)) });
   return { form, status, success, button, submit: () => submit({ preventDefault() {} }) };
 }
 
@@ -82,4 +82,21 @@ test('invalid fields and honeypot entries do not reach the provider', async () =
   f.form.fields._gotcha = 'spam';
   await f.submit();
   assert.equal(calls, 0);
+});
+
+test('lead measurement runs only after an accepted request, without form data', async () => {
+  const measured = [];
+  let accepted = false;
+  const f = fixture(async () => ({ ok: accepted, status: accepted ? 200 : 500 }), 200, (...args) => measured.push(args));
+  await f.submit();
+  assert.deepEqual(measured, []);
+  accepted = true;
+  await f.submit();
+  assert.deepEqual(measured, [[]]);
+});
+test('blocked measurement cannot turn delivered requests into errors', async () => {
+  const f = fixture(async () => ({ ok: true }), 200, () => { throw new Error('Blocked'); });
+  await f.submit();
+  assert.equal(f.status.dataset.state, 'success');
+  assert.equal(f.success.hidden, false);
 });

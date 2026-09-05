@@ -27,7 +27,11 @@ document.querySelectorAll('[data-interest]').forEach(link => {
     if (interest) interest.value = link.dataset.interest;
   });
 });
-initContactForm(document.getElementById('contactForm'), document.getElementById('form-status'), document.getElementById('formSuccess'));
+initContactForm(document.getElementById('contactForm'), document.getElementById('form-status'), document.getElementById('formSuccess'), {
+  onSuccess() {
+    window.gtag?.('event', 'generate_lead', { contact_method: 'callback_form' });
+  }
+});
 initReviews();
 const year = document.getElementById('copyright-year');
 if (year) year.textContent = String(new Date().getFullYear());
