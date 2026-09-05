@@ -16,3 +16,14 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Preserve the callback URL used by the previous website.
+[[redirects]]
+  from = "/request-a-call"
+  to = "/#callback"
+  status = 301
+
+[[redirects]]
+  from = "/request-a-call/"
+  to = "/#callback"
+  status = 301
