@@ -28,15 +28,18 @@
 .closing-cta .button-dark:hover{background:var(--green);box-shadow:inset 0 0 0 2px #000}
 .service-card{transition:border-color .2s}
 .service-card:hover{border-color:var(--green)}
-.pest-icon{display:block;flex-shrink:0;width:96px;height:96px;margin:0 0 20px;background-color:var(--green);mask-image:url('/assets/pest-silhouettes.webp');mask-mode:luminance;mask-repeat:no-repeat;mask-size:300% 200%;mask-position:var(--icon-x) var(--icon-y)}
+/* Render the sprite directly: no luminance-mask dependency on mobile Safari.
+   Multiply colors the white silhouettes green; screen blends black into the card. */
+.pest-icon{display:block;flex-shrink:0;width:96px;height:96px;margin:0 0 20px;background-color:var(--green);background-image:url('/assets/pest-silhouettes.webp');background-repeat:no-repeat;background-size:300% 200%;background-position:var(--icon-x) var(--icon-y);background-blend-mode:multiply;mix-blend-mode:screen}
+.service-card{isolation:isolate}
 .pest-icon--ant{--icon-x:0%;--icon-y:0%}
 .pest-icon--termite{--icon-x:50%;--icon-y:0%}
 .pest-icon--mouse{--icon-x:100%;--icon-y:0%}
 .pest-icon--wasp{--icon-x:0%;--icon-y:100%}
-.pest-icon--tick{mask-image:url('/assets/tick-silhouette.webp');mask-size:contain;mask-position:center}
+.pest-icon--tick{background-image:url('/assets/tick-silhouette.webp');background-size:contain;background-position:center}
 .pest-icon--bedbug{--icon-x:100%;--icon-y:100%}
-@supports not (mask-mode:luminance){.pest-icon{background:#000 url('/assets/pest-silhouettes.webp') no-repeat var(--icon-x) var(--icon-y)/300% 200%}}
-@supports not (mask-mode:luminance){.pest-icon--tick{background:#000 url('/assets/tick-silhouette.webp') no-repeat center/contain}}
+.review-rating-badge{white-space:nowrap;font-weight:700}
+
 
 /* The trucks are part of the hero background, with soft fades into the page. */
 .hero{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);padding:0}
