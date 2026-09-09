@@ -36,7 +36,8 @@
 .pest-icon--termite{--icon-x:50%;--icon-y:0%}
 .pest-icon--mouse{--icon-x:100%;--icon-y:0%}
 .pest-icon--wasp{--icon-x:0%;--icon-y:100%}
-.pest-icon--tick{background-image:url('/assets/tick-silhouette.webp');background-size:contain;background-position:center}
+.pest-icon--tick{position:relative;background-color:#000;background-image:url('/assets/tick-silhouette.webp');background-size:contain;background-position:center;background-blend-mode:normal}
+.pest-icon--tick::after{content:'';position:absolute;inset:0;background:var(--green);mix-blend-mode:multiply}
 .pest-icon--bedbug{--icon-x:100%;--icon-y:100%}
 .review-rating-badge{white-space:nowrap;font-weight:700}
 
