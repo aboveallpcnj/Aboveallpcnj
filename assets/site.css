@@ -122,3 +122,9 @@
 .callback-service-area{margin-top:20px}
 .callback-page .site-footer{padding-bottom:28px}
 @media(max-width:800px){.callback-page .contact-section{padding-block:32px}.callback-page .contact-layout{gap:28px}}
+
+/* Approved integrated shield/name/tagline artwork, scaled as one logo. */
+.site-header .brand{width:300px}
+@media(max-width:1120px){.site-header .brand{width:250px}}
+@media(max-width:960px){html{scroll-padding-top:116px}.site-header .brand{width:260px}.header-inner{min-height:104px}.js-ready .main-nav.is-open{max-height:calc(100dvh - 116px)}}
+@media(max-width:560px){html{scroll-padding-top:110px}.site-header .brand{width:min(260px,calc(100% - 58px))}.header-inner{min-height:98px}}
