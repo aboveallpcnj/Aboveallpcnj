@@ -122,10 +122,3 @@
 .callback-service-area{margin-top:20px}
 .callback-page .site-footer{padding-bottom:28px}
 @media(max-width:800px){.callback-page .contact-section{padding-block:32px}.callback-page .contact-layout{gap:28px}}
-
-/* Keep the tagline as live text so it stays legible beside the shield. */
-.site-header .brand{width:260px;text-decoration:none}
-.brand-tagline{display:block;margin-top:6px;margin-left:25.4%;color:var(--green);font:700 12px/1.1 var(--body);text-transform:uppercase;white-space:nowrap}
-@media(max-width:1120px){.site-header .brand{width:230px}.brand-tagline{font-size:11px}}
-@media(max-width:960px){html{scroll-padding-top:116px}.site-header .brand{width:250px}.brand-tagline{font-size:12px}.header-inner{min-height:104px}.js-ready .main-nav.is-open{max-height:calc(100dvh - 116px)}}
-@media(max-width:560px){html{scroll-padding-top:110px}.site-header .brand{width:min(230px,calc(100% - 58px))}.brand-tagline{font-size:11px}.header-inner{min-height:98px}}
